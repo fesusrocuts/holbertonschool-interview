@@ -20,31 +20,31 @@ import re
 import sys
 
 
-i = -1
-obj_error = {}
-size = 0
-try:
+def print_sorted_dict(status_codes):
+    """
+    status_code have all data args with codes and times
+    """
+    sorted_keys = sorted(status_codes.keys())
+    print('\n'.join(["{:d}: {:d}".format(k, status_codes[k])
+                     for k in sorted_keys if status_codes[k] != 0]))
 
-    i += 1
-    for data in sys.stdin:
-        parsed_data = re.split(r'[-+#\s*$ ]', data)
-        size_parsed = len(parsed_data)
-        if size_parsed > 2:
-            i += 1
-            size_file = int(parsed_data[size_parsed - 2])
-            size += size_file
-            error = parsed_data[size_parsed - 3]
-            if error in obj_error:
-                obj_error[error] += 1
-            else:
-                obj_error[error] = 1
-        if i == 10:
-            print("File size: {}".format(size))
-            for k, v in sorted(obj_error.items()):
-                print("{}: {}".format(k, v))
-            i = 0
 
-except Exception as e:
-    print("File size: {}".format(size))
-    for k, v in sorted(obj_error.items()):
-        print("{}: {}".format(k, v))
+def __run():
+    try:
+        total = 0
+        status_codes = \
+            {code: 0 for code in [200, 301, 400, 401, 403, 404, 405, 500]}
+        for i, rawline in enumerate(sys.stdin, 1):
+            words = rawline.split()
+            total += int(words[-1])
+            status_codes[int(words[-2])] += 1
+            if i % 10 == 0:
+                print("File size: {:d}".format(total))
+                print_sorted_dict(status_codes)
+    finally:
+        print("File size: {:d}".format(total))
+        print_sorted_dict(status_codes)
+
+
+if __name__ == "__main__":
+    __run()
