@@ -1,15 +1,15 @@
 #include "slide_line.h"
 int walk_right(int *line, int size);
 int walk_left(int *line, int size);
-void merge_right(int *line, size_t size);
-void merge_left(int *line, size_t size);
+void join_right(int *line, size_t size);
+void join_left(int *line, size_t size);
 
 /**
- * merge_left - merge numbers to left
+ * join_left - merge numbers to left
  * @line: array
  * @size: size
  */
-void merge_left(int *line, size_t size)
+void join_left(int *line, size_t size)
 {
 	int i, next;
 
@@ -42,11 +42,11 @@ void merge_left(int *line, size_t size)
 }
 
 /**
- * merge_right - merge numbers to right
+ * join_right - merge numbers to right
  * @size: size
  * @line: array
  */
-void merge_right(int *line, size_t size)
+void join_right(int *line, size_t size)
 {
 	int i, next;
 
@@ -148,9 +148,9 @@ int slide_line(int *line, size_t size, int direction)
 	if ((direction != SLIDE_RIGHT && direction != SLIDE_LEFT) || !line)
 		return (0);
 	if (direction == SLIDE_LEFT)
-		merge_left(line, size);
+		join_left(line, size);
 	else
-		merge_right(line, size);
+		join_right(line, size);
 	return (direction == SLIDE_LEFT ?
 		walk_left(line, size) : walk_right(line, size));
 }
