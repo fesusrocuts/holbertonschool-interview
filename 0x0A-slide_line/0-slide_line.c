@@ -1,8 +1,9 @@
 #include "slide_line.h"
-int move_right(int *line, int size);
-int move_left(int *line, int size);
+int walk_right(int *line, int size);
+int walk_left(int *line, int size);
 void merge_right(int *line, size_t size);
 void merge_left(int *line, size_t size);
+
 /**
  * merge_left - merge numbers to left
  * @line: array
@@ -20,7 +21,8 @@ void merge_left(int *line, size_t size)
 			next++;
 			continue;
 		}
-		while (next < (int) size && line[next] == 0) /* find next non-zero */
+		/* find next non-zero */
+		while (next < (int) size && line[next] == 0)
 			next++;
 		if (next >= (int) size)
 			break;
@@ -56,7 +58,8 @@ void merge_right(int *line, size_t size)
 			next--;
 			continue;
 		}
-		while (next >= 0 && line[next] == 0) /* find next non-zero */
+		/* find next non-zero */
+		while (next >= 0 && line[next] == 0)
 			next--;
 		if (next < 0)
 			break;
@@ -75,13 +78,13 @@ void merge_right(int *line, size_t size)
 	}
 }
 /**
- * move_left - move numbers to left
+ * walk_left - move numbers to left
  * @size: size
  * @line: array
  *
  * Return: 1
  */
-int move_left(int *line, int size)
+int walk_left(int *line, int size)
 {
 	int current, next;
 
@@ -92,9 +95,11 @@ int move_left(int *line, int size)
 			next++;
 			continue;
 		}
-		while (next < size && line[next] == 0) /* find next number to move */
+		/* find next number to move */
+		while (next < size && line[next] == 0)
 			next++;
-		if (next >= size) /* no more number to move */
+		/* no more number to move */
+		if (next >= size)
 			return (1);
 		line[current] = line[next];
 		if (current != next)
@@ -103,13 +108,13 @@ int move_left(int *line, int size)
 	return (1);
 }
 /**
- * move_right - move numbers to right
+ * walk_right - move numbers to right
  * @size: size
  * @line: array
  *
  * Return: 1
  */
-int move_right(int *line, int size)
+int walk_right(int *line, int size)
 {
 	int current, next;
 
@@ -140,12 +145,12 @@ int move_right(int *line, int size)
  */
 int slide_line(int *line, size_t size, int direction)
 {
-	if ((direction != SLIDE_LEFT && direction != SLIDE_RIGHT) || !line)
+	if ((direction != SLIDE_RIGHT && direction != SLIDE_LEFT) || !line)
 		return (0);
 	if (direction == SLIDE_LEFT)
 		merge_left(line, size);
 	else
 		merge_right(line, size);
 	return (direction == SLIDE_LEFT ?
-		move_left(line, size) : move_right(line, size));
+		walk_left(line, size) : walk_right(line, size));
 }
