@@ -35,5 +35,8 @@ void fill(int row, int col)
 		row = row / 3;
 		col = col / 3;
 	}
+	/* 
 	fwrite(&fill, 1, 2, stdout);
+	*/
+	printf("%c", fill);
 }
