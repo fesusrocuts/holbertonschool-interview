@@ -15,7 +15,7 @@ void menger(int level)
 		{
 			fill(row, col);
 		}
-		printf("%c",'\n');
+		printf("%c", '\n');
 	}
 }
 
@@ -27,9 +27,7 @@ void menger(int level)
 void fill(int row, int col)
 {
 	char fill = '#';
-	// printf("row is %d",row);
-	// printf("col is %d",col);
-	// printf("%c",'\n');
+
 	while (row || col)
 	{
 		if (row % 3 == 1 && col % 3 == 1)
