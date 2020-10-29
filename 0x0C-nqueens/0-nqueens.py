@@ -22,20 +22,20 @@ def decode(list):
         if NxN < 4:
             print("N must be at least 4")
             exit(1)
-        
+
         col = list[1]
         listThreats = list[2]
         for row in range(NxN):
             nonAttacking = 1
             for move in listThreats:
                 if move[1] == row:
-                    nonAttacking  = 0
+                    nonAttacking = 0
                     break
                 if col - row == move[0] - move[1]:
-                    nonAttacking  = 0
+                    nonAttacking = 0
                     break
                 if row - move[1] == move[0] - col:
-                    nonAttacking  = 0
+                    nonAttacking = 0
                     break
             if nonAttacking == 1:
                 listThreats.append([col, row])
@@ -44,7 +44,7 @@ def decode(list):
                 else:
                     print(listThreats)
                 del listThreats[-1]
-    
+
     except ValueError:
         print("N must be a number")
         exit(1)
