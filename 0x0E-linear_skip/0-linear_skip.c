@@ -3,7 +3,7 @@
 /**
  * linear_skip - searches for a value in a sorted skip list of integers
  * @list: pointer to the head of the skip list to search in.
- * A node of the express lane is placed every index which is a multiple 
+ * A node of the express lane is placed every index which is a multiple
  * of the square root of the size of the list
  * @value: value to search for
  * Return: pointer to the first node where value is located, or NULL on failure
@@ -45,3 +45,4 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 	}
 	return (NULL);
 }
+
