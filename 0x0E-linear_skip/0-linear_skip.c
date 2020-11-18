@@ -1,4 +1,4 @@
-#include "search_algos.h"
+#include "search.h"
 
 /**
  * linear_skip - searches for a value in a sorted skip list of integers
