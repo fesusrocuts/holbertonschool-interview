@@ -16,4 +16,4 @@ def rain(walls):
     """
     if (len(walls) < 2):
         return 0
-    return (sum(walls[1:-1]))
+    return sum([i for i in walls[1:-1] if i > 0])
