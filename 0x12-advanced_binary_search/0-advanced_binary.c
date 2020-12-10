@@ -8,9 +8,6 @@ int recursive1(int *array, int *clone, size_t size, int value)
 	size_t i = 0;
 	// char extstr[] = "  ";
 
-	if (array == NULL){
-		return (-1);
-	}
 	if (size < 1)
 		return (-1);
 	printf("Searching in array: ");
