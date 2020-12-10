@@ -8,6 +8,9 @@ int recursive1(int *array, int *clone, size_t size, int value)
 	size_t i = 0;
 	// char extstr[] = "  ";
 
+	if (array == NULL){
+		return (-1);
+	}
 	if (size < 1)
 		return (-1);
 	printf("Searching in array: ");
@@ -35,18 +38,5 @@ int recursive1(int *array, int *clone, size_t size, int value)
 
 int advanced_binary(int *array, size_t size, int value)
 {
-	size_t i = 0, _continue = 0;
-
-	if (array == NULL){
-		return (-1);
-	}
-	for (i = 0; i < size; i++){
-		if (array[i] == value){
-			_continue = 1;
-		}
-	}
-	if (_continue == 0){
-		return (-1);
-	}
 	return (recursive1(array, array, size, value));
 }
